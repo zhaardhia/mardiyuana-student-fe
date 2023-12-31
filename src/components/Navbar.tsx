@@ -15,20 +15,19 @@ const Navbar = () => {
           <Image src={"/my_logo.png"} width={25} height={20} alt={"mardiyuana logo"} />
           SMP Mardi Yuana
         </Link>
-        <div
-          className="flex items-center gap-3 p-2"
-          onMouseOver={() => setShowDropdown(true)}
-          onMouseLeave={() => setShowDropdown(false)}
-        >
+        <div className="flex items-center gap-3 p-2">
           <p className="cursor-default text-base">Welcome, Jamets</p>
-          <div className="cursor-pointer" onClick={() => router.push(`/profile/eD98k-Lj23`)}>
+          <div
+            className="cursor-pointer"
+            onClick={() => {
+              setShowDropdown((prev) => !prev);
+            }}
+          >
             <img src="/photo_profile.jpg" alt="" className="w-10 h-10 rounded-full object-cover" />
             <div
               className={`py-2 px-1 w-1/12 flex flex-col bg-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] transition-all duration-200 absolute rounded-xl font-medium text-base top-14 right-6 z-10 ${
                 showDropdown ? "opacity-100 translate-y-2" : "opacity-0 pointer-events-none"
               }`}
-              onMouseOver={() => setShowDropdown(true)}
-              onMouseLeave={() => setShowDropdown(false)}
             >
               <button
                 className="py-2 px-2 hover:bg-gray-100"
