@@ -18,7 +18,7 @@ const Layout = ({ children }: LayoutProps) => {
       <Navbar />
       <Sidebar />
 
-      <div className="pt-[7rem] pb-[3rem] pl-[10rem] bg-[#E4EBF7] min-h-screen">{children}</div>
+      <div className="pt-[9rem] sm:pt-[7rem] pb-[3rem] sm:pl-[10rem] bg-[#E4EBF7] min-h-screen">{children}</div>
       {/* <Toaster /> */}
     </>
   );

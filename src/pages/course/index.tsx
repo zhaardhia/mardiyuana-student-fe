@@ -7,12 +7,9 @@ import Link from "next/link";
 type Option = { value: string; label: string };
 
 const options = [
-  { value: "X - Semester 1", label: "X - Semester 1" },
-  { value: "X - Semester 2", label: "X - Semester 2" },
-  { value: "XI - Semester 1", label: "XI - Semester 1" },
-  { value: "XI - Semester 2", label: "XI - Semester 2" },
-  { value: "XII - Semester 1", label: "XII - Semester 1" },
-  { value: "XII - Semester 2", label: "XII - Semester 2" },
+  { value: "X", label: "X" },
+  { value: "XI", label: "XI" },
+  { value: "XII", label: "XII" },
 ];
 
 const CoursePage = () => {
@@ -34,7 +31,7 @@ const CoursePage = () => {
       <div className="my-5 w-[90%] mx-auto py-3 flex gap-14 items-center max-w-[1400px]">
         <Select
           name="class"
-          className="basic-single w-[18%] rounded-xl"
+          className="basic-single w-[18%] min-w-28 rounded-xl"
           value={selectedClass}
           classNamePrefix="select"
           isClearable={false}

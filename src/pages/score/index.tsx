@@ -9,12 +9,9 @@ import ModalCumScore from "@/components/score/ModalCumScore";
 type Option = { value: string; label: string };
 
 const options = [
-  { value: "X - Semester 1", label: "X - Semester 1" },
-  { value: "X - Semester 2", label: "X - Semester 2" },
-  { value: "XI - Semester 1", label: "XI - Semester 1" },
-  { value: "XI - Semester 2", label: "XI - Semester 2" },
-  { value: "XII - Semester 1", label: "XII - Semester 1" },
-  { value: "XII - Semester 2", label: "XII - Semester 2" },
+  { value: "X", label: "X" },
+  { value: "XI", label: "XI" },
+  { value: "XII", label: "XII" },
 ];
 
 const ScorePage = () => {
@@ -36,7 +33,7 @@ const ScorePage = () => {
       <div className="my-5 w-[90%] mx-auto py-3 flex gap-14 items-center max-w-[1400px]">
         <Select
           name="class"
-          className="basic-single w-[18%] rounded-xl"
+          className="basic-single w-[18%] min-w-28 rounded-xl"
           value={selectedClass}
           classNamePrefix="select"
           isClearable={false}
@@ -85,29 +82,6 @@ const ScorePage = () => {
             })}
           </TableBody>
         </Table>
-      </div>
-
-      <div className="w-[90%] my-5 mx-auto flex justify-end gap-14 items-center max-w-[1400px]">
-        <div className="w-1/4 bg-white rounded-[6px] shadow-xl border border-slate-400 text-base">
-          <section className="flex justify-between px-4 py-2">
-            <div className="flex flex-col gap-2">
-              <p>Sakit</p>
-              <p>Izin</p>
-              <p>Alpha</p>
-            </div>
-            <div className="flex flex-col gap-2">
-              <p>2</p>
-              <p>4</p>
-              <p>0</p>
-            </div>
-          </section>
-          <hr className="h-[2px] bg-[#AFAFAF]" />
-
-          <section className="flex justify-between px-4 py-2 font-semibold">
-            <p>Mean</p>
-            <p>87</p>
-          </section>
-        </div>
       </div>
     </Layout>
   );

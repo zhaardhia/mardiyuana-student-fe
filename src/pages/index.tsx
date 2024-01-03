@@ -18,7 +18,7 @@ export default function Home() {
 
       <hr className="h-[2px] bg-[#AFAFAF]" />
 
-      <div className="my-5 w-[90%] mx-auto py-3 flex gap-14 items-center max-w-[1400px]">
+      <div className="my-5 w-[90%] mx-auto py-3 flex lg:flex-row flex-col gap-14 items-center max-w-[1400px]">
         <div className="flex flex-col gap-4 w-full">
           <h2 className="text-xl">School Events</h2>
           <Carousel
@@ -30,13 +30,19 @@ export default function Home() {
           >
             <CarouselContent>
               <CarouselItem>
-                <div className="h-[250px] w-full relative cursor-pointer" onClick={() => router.push(`/event/12321`)}>
+                <div
+                  className="h-[250px] w-full rounded-xl relative cursor-pointer"
+                  onClick={() => router.push(`/event/12321`)}
+                >
                   <img src="/vote_img.png" alt="" className="h-full object-cover rounded-xl w-full" />
                   <p className="text-white absolute left-5 z-50 bottom-5 font-semibold text-xl">Peningkatan Literasi</p>
                 </div>
               </CarouselItem>
               <CarouselItem>
-                <div className="h-[250px] w-full relative cursor-pointer" onClick={() => router.push(`/event/12321`)}>
+                <div
+                  className="h-[250px] w-full rounded-xl relative cursor-pointer"
+                  onClick={() => router.push(`/event/12321`)}
+                >
                   <img src="/school_event.png" alt="" className="h-full object-cover rounded-xl w-full" />
                   <p className="text-white absolute left-5 z-50 bottom-5 font-semibold text-xl">Class Meeting</p>
                 </div>
@@ -44,9 +50,9 @@ export default function Home() {
             </CarouselContent>
           </Carousel>
         </div>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 xl:w-fit w-full">
           <h2 className="text-xl">Notification</h2>
-          <div className="bg-white min-h-[247px] rounded-[10px] px-5 flex flex-col items-center justify-center gap-3 w-[380px]">
+          <div className="bg-white min-h-[247px] rounded-[10px] px-5 flex flex-col items-center justify-center gap-3 w-full xl:w-[380px]">
             <p className="bg-[#E4EBF7] px-5 py-3 rounded-[15px] w-full">Libur Nasional</p>
             <p className="bg-[#E4EBF7] px-5 py-3 rounded-[15px] w-full">Ujian Semester</p>
             <p className="bg-[#E4EBF7] px-5 py-3 rounded-[15px] w-full">Quiz</p>
@@ -57,10 +63,10 @@ export default function Home() {
 
       <hr className="h-[2px] bg-[#AFAFAF]" />
 
-      <div className="my-5 w-[90%] mx-auto py-3 flex gap-14 items-center justify-center max-w-[1400px]">
-        <div className="flex flex-col gap-4">
+      <div className="my-5 w-[90%] mx-auto py-3 flex lg:flex-row flex-col gap-14 items-center justify-center max-w-[1400px]">
+        <div className="flex flex-col gap-4 xl:w-fit w-full">
           <h2 className="text-xl">Reminder</h2>
-          <div className="bg-white min-h-[247px] rounded-[10px] px-5 flex flex-col justify-center gap-3 w-[380px]">
+          <div className="bg-white min-h-[247px] rounded-[10px] px-5 flex flex-col justify-center gap-3 w-full xl:w-[380px]">
             <p className="bg-[#E4EBF7] px-5 py-4 rounded-[15px]">Libur Nasional</p>
             <p className="bg-[#E4EBF7] px-5 py-4 rounded-[15px]">Ujian Semester</p>
             <p className="bg-[#E4EBF7] px-5 py-4 rounded-[15px]">Quiz</p>

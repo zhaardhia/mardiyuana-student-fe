@@ -16,8 +16,8 @@ const ProfilePage = () => {
       <hr className="h-[2px] bg-[#AFAFAF]" />
 
       <div className="my-5 w-[90%] mx-auto py-3 flex flex-col gap-14 max-w-[1400px]">
-        <div className="flex justify-center gap-10">
-          <img src="/photo_profile.jpg" alt="" className="w-72 h-72 rounded-full object-cover" />
+        <div className="flex sm:flex-row flex-col items-center sm:justify-center gap-10">
+          <img src="/photo_profile.jpg" alt="" className="w-56 h-56 sm:w-72 sm:h-72 rounded-full object-cover" />
           <div className="flex flex-col justify-center gap-1">
             <label htmlFor="" className="font-medium text-lg text-gray-700">
               Ubah Gambar
@@ -25,8 +25,8 @@ const ProfilePage = () => {
             <button className="py-1 px-4 text-lg rounded-[6px] text-white bg-green-600">Edit</button>
           </div>
         </div>
-        <div className="flex gap-10 justify-center">
-          <div className="flex flex-col gap-3 w-1/3">
+        <div className="flex sm:flex-row flex-col gap-10 justify-center">
+          <div className="flex flex-col gap-3 w-full sm:w-1/3">
             <div>
               <label htmlFor="" className="font-medium text-lg">
                 Name
