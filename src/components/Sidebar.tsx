@@ -36,12 +36,12 @@ const Sidebar = () => {
 
       <aside
         id="default-sidebar"
-        className={`fixed left-0 top-[4rem] z-40 w-[10rem] h-screen transition-transform ${
+        className={`fixed left-0 top-[4rem] sm:top-0 z-40 w-[10rem] h-screen transition-transform ${
           sidebarActive ? "translate-x-0" : "-translate-x-full"
         } sm:translate-x-0`}
         aria-label="Sidebar"
       >
-        <div className="h-full py-4 overflow-y-auto gradient-sidebar flex flex-col gap-20 text-white">
+        <div className="h-full py-4 sm:py-0 overflow-y-auto gradient-sidebar flex flex-col gap-20 text-white">
           <div className="flex justify-end pr-3">
             <button
               data-drawer-target="default-sidebar"

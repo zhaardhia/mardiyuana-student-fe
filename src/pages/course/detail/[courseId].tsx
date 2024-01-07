@@ -3,7 +3,6 @@ import Layout from "@/components/Layout";
 import { Icon } from "@iconify/react";
 import { useRouter } from "next/router";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import ModalAddDiscussion from "@/components/course/ModalAddDiscussion";
 
 const CourseDetail = () => {
   const router = useRouter();
@@ -47,7 +46,7 @@ const CourseDetail = () => {
 
           <TabsContent value="session">
             <Tabs defaultValue="bab 1" className="w-full overflow-x-hidden">
-              <TabsList className="w-full flex items-center gap-4 justify-start pl-0 overflow-y-hidden min-w-[500px] overflow-x-scroll">
+              <TabsList className="w-full flex items-center gap-4 justify-start pl-0 min-w-[500px] overflow-y-hidden overflow-x-scroll md:pr-0 sm:pr-10 pr-52">
                 {[...Array(8)].map((_, idx) => (
                   <TabsTrigger
                     value={`bab ${idx + 1}`}
@@ -90,8 +89,6 @@ const CourseDetail = () => {
                 <TabsContent value={`bab ${idx + 1}`} className="mt-10">
                   <h2 className="font-semibold text-3xl mb-2">Fotosintesis</h2>
                   <div className="flex items-center justify-between">
-                    <ModalAddDiscussion />
-
                     <section className="flex items-center gap-3">
                       <Icon icon="iconamoon:arrow-left-2" className="w-5 h-5" />
                       <p>1</p>
@@ -125,7 +122,7 @@ const CourseDetail = () => {
 
           <TabsContent value="scoring">
             <Tabs defaultValue="bab 1" className="w-full overflow-x-hidden">
-              <TabsList className="w-full flex items-center gap-4 justify-start pl-0 min-w-[500px] overflow-y-hidden overflow-x-scroll">
+              <TabsList className="w-full flex items-center gap-4 justify-start pl-0 min-w-[500px] overflow-y-hidden overflow-x-scroll md:pr-0 sm:pr-10 pr-52">
                 {[...Array(8)].map((_, idx) => (
                   <TabsTrigger
                     value={`bab ${idx + 1}`}
