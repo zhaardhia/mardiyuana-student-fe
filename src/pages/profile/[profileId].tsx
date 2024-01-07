@@ -1,10 +1,12 @@
 import Layout from "@/components/Layout";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 
 const ProfilePage = () => {
   const router = useRouter();
   const { profileId } = router.query;
+
+  const [editPassword, setEditPassword] = useState(false);
 
   return (
     <Layout>
@@ -62,7 +64,8 @@ const ProfilePage = () => {
             <label htmlFor="" className="font-medium text-lg">
               Ubah Password
             </label>
-            <button className="py-1 px-4 text-lg rounded-[6px] text-white bg-green-600">Edit</button>
+
+            <button className="py-1 px-4 text-lg rounded-[6px] text-white bg-green-600 mt-2">Edit</button>
           </div>
         </div>
       </div>

@@ -18,7 +18,7 @@ const ModalAddDiscussion = () => {
           <Icon icon="material-symbols:add" /> Add Discussion
         </button>
       </DialogTrigger>
-      <DialogContent className="bg-white w-1/4">
+      <DialogContent className="bg-white w-[90%] lg:w-1/2">
         <DialogHeader>
           <DialogTitle className="text-2xl">Add Discussion</DialogTitle>
           <DialogDescription>Create new discussion with others</DialogDescription>
@@ -61,7 +61,7 @@ const ModalAddDiscussion = () => {
         <DialogFooter>
           <button
             type="submit"
-            className="flex items-center px-4 py-2 text-white font-medium rounded-xl bg-[#2F9757] hover:opacity-95"
+            className="flex items-center justify-center px-4 py-2 text-white font-medium rounded-xl bg-[#2F9757] hover:opacity-95"
           >
             <Icon icon="material-symbols:add" /> Add Discussion
           </button>

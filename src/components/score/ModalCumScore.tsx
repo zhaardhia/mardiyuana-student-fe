@@ -24,7 +24,7 @@ const ModalCumScore = (props: ModalCumPropsType) => {
       <DialogTrigger asChild>
         <Icon icon="iconoir:question-mark-circle" className="text-sm cursor-pointer" />
       </DialogTrigger>
-      <DialogContent className="bg-white w-1/2 px-10">
+      <DialogContent className="bg-white w-[90%] lg:w-1/2 px-5 sm:px-10">
         <DialogHeader className="flex flex-col items-center">
           <DialogTitle className="text-2xl capitalize">Cummulative {type}</DialogTitle>
           <DialogDescription className="text-xl font-normal capitalize">{subject}</DialogDescription>

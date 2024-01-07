@@ -19,7 +19,7 @@ const ClassPage = () => {
       <hr className="h-[2px] bg-[#AFAFAF]" />
 
       <div className="my-5 w-[90%] mx-auto rounded-xl shadow-xl flex gap-14 items-center max-w-[1400px]">
-        <Table className="bg-white rounded-xl">
+        <Table className="bg-white rounded-xl min-w-[350px]">
           <TableHeader>
             <TableRow>
               <TableHead className="pl-7 text-xl py-3">Nama</TableHead>
@@ -31,10 +31,10 @@ const ClassPage = () => {
               return (
                 <TableRow>
                   <TableCell className="pl-7 py-3">
-                    <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-2 sm:gap-6">
                       <img src="/photo_profile.jpg" alt="" className="w-16 h-16 rounded-full object-cover" />
                       <div className="flex flex-col w-fit">
-                        <h4 className="text-center text-lg">Martin</h4>
+                        <h4 className="text-center text-lg ">Martin Garrix Ramadhan</h4>
                         <h5 className="text-center">VII-A</h5>
                       </div>
                     </div>
