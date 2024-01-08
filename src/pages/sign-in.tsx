@@ -1,11 +1,45 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import axios from "axios";
 
 const SignIn = () => {
   const router = useRouter();
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [msgError, setMsgError] = useState<string>();
+
+  const submitUser = async () => {
+    console.log("tes");
+    console.log({ username, password });
+    console.log(process.env.NEXT_PUBLIC_BASE_URL);
+    try {
+      // axios.defaults.withCredentials = true
+      const login = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/mardiyuana-student/session/login`,
+        {
+          username,
+          password,
+        },
+        {
+          withCredentials: true,
+          headers: { "Access-Control-Allow-Origin": "*", "Content-Type": "application/json" },
+        }
+      );
+      console.log({login})
+      const expires = new Date();
+      expires.setTime(expires.getTime() + 1 + 24 * 60 * 60 * 1000);
+      const cookie = `${"refreshToken"}=${login?.data?.data?.refreshToken};expires=${expires.toUTCString()}`;
+      console.log({cookie})
+      document.cookie = cookie;
+      setMsgError('');
+      // refreshToken()
+      router.push("/");
+    } catch (error: any) {
+      console.error(error.response.data.message);
+      setMsgError(error.response.data.message);
+    }
+  };
+
   return (
     <div className="flex md:flex-row flex-col items-center justify-center bg-login-color h-screen lg:gap-36 md:gap-20 ">
       <div className="lg:w-[448px] md:w-[320px] w-[15rem] p-10 items-center justify-center flex">
@@ -31,7 +65,7 @@ const SignIn = () => {
           </div>
           <button
             className="text-xl bg-login-button rounded-lg px-6 py-2"
-            // onClick={() => submitUser()}
+            onClick={submitUser}
           >
             Login
           </button>
