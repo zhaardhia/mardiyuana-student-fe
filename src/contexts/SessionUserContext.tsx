@@ -56,7 +56,7 @@ export function SessionUserProvider({ children }: { children: ReactNode }) {
     const currentDate = new Date();
     try {
       // if (state?.expire < Math.floor(Date.now() / 1000)) {
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/mardiyuana/admin/refresh-token`, {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/mardiyuana-student/session/refresh-token`, {
         withCredentials: true,
       })
       config.headers.Authorization = `Bearer ${response.data.data}`
@@ -88,7 +88,7 @@ export function SessionUserProvider({ children }: { children: ReactNode }) {
   const refreshToken = async () => {
     try {
       console.log("wawkaww")
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/mardiyuana/admin/refresh-token`, {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/mardiyuana-student/session/refresh-token`, {
         withCredentials: true,
         headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'}
       })
