@@ -5,3 +5,4 @@ export * from './academicYear';
 export * from './class';
 export * from './teacher';
 export * from './reminderCourse';
+export * from './scoreCourse';
