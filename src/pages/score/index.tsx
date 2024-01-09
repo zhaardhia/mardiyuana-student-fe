@@ -5,7 +5,8 @@ import Select, { ActionMeta } from "react-select";
 import { useRouter } from "next/router";
 import { Icon } from "@iconify/react";
 import ModalCumScore from "@/components/score/ModalCumScore";
-
+import { ScoreCourseStudentAllScore, ScoreCourseStudentDetailAllScore } from "@/types"
+import { useSessionUser } from "@/contexts/SessionUserContext"
 type Option = { value: string; label: string };
 
 const options = [
@@ -16,11 +17,37 @@ const options = [
 
 const ScorePage = () => {
   const router = useRouter();
-  const [selectedClass, setSelectedClass] = useState<Option>(options[0]);
+  const { axiosJWT } = useSessionUser()
+  const [academicYearId, setAcademicYearId] = useState<string>()
+  const [optionAcademicYear, setOptionAcademicYear] = useState<Option[]>()
+  const [scoreCourseData, setScoreCourseData] = useState<ScoreCourseStudentAllScore[]>()
+  const [selectedAcademicYear, setSelectedAcademicYear] = useState<Option>(options[0]);
   const handleSelectClass = (option: Option | null, actionMeta: ActionMeta<Option>) => {
-    option && setSelectedClass(option);
+    option && setSelectedAcademicYear(option);
   };
 
+  React.useEffect(() => {
+    fetchData()
+  }, [])
+
+  const fetchData = async () => {
+    const response = await axiosJWT.get(`${process.env.NEXT_PUBLIC_BASE_URL}/mardiyuana-student/score-course/score-course-student${academicYearId ? `?academicYearId=${academicYearId}` : ""}`, {
+      withCredentials: true,
+      headers: {
+        'Access-Control-Allow-Origin': '*', 
+        'Content-Type': 'application/json',
+      },
+    })
+    console.log({response})
+    if (response?.status === 200) {
+      setOptionAcademicYear(response?.data?.data?.optionAcademicYear)
+      setAcademicYearId(response?.data?.data?.optionAcademicYear[0].academicYearId)
+      setSelectedAcademicYear(response?.data?.data?.optionAcademicYear[0])
+      setScoreCourseData(response?.data?.data?.scoreCourseStudent)
+    }
+  }
+
+  console.log({scoreCourseData})
   return (
     <Layout>
       <div className="flex justify-between items-center mb-8 w-[90%] mx-auto max-w-[1400px]">
@@ -34,12 +61,12 @@ const ScorePage = () => {
         <Select
           name="class"
           className="basic-single w-[18%] min-w-28 rounded-xl"
-          value={selectedClass}
+          value={selectedAcademicYear}
           classNamePrefix="select"
           isClearable={false}
           isSearchable={false}
-          defaultValue={selectedClass}
-          options={options}
+          defaultValue={selectedAcademicYear}
+          options={optionAcademicYear}
           placeholder="Pilih Kelas"
           onChange={handleSelectClass}
         />
@@ -49,34 +76,28 @@ const ScorePage = () => {
         <Table className="bg-white rounded-xl ">
           <TableHeader>
             <TableRow>
-              <TableHead className="text-xl py-3 text-center">Mata Pelajaran</TableHead>
+              <TableHead className="text-xl py-3 text-left">Mata Pelajaran</TableHead>
               <TableHead className="text-xl py-3 text-center">Cum. Assignment</TableHead>
               <TableHead className="text-xl py-3 text-center">Cum. Quiz</TableHead>
               <TableHead className="text-xl py-3 text-center">Mid Exam</TableHead>
-              <TableHead className="text-xl py-3 text-center">KKM</TableHead>
               <TableHead className="text-xl py-3 text-center">Final Exam</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {[...Array(10)].map((_, idx) => {
+            {scoreCourseData?.map((_: ScoreCourseStudentAllScore, idx) => {
               return (
                 <TableRow className="group">
-                  <TableCell className="text-lg py-3 text-center">Seni Budaya</TableCell>
-                  <TableCell className="text-lg py-3 text-center">
-                    <div className="flex justify-center items-start">
-                      <p>90</p>
-                      <ModalCumScore type="Assignment" subject="Fisika" />
-                    </div>
-                  </TableCell>
-                  <TableCell className="text-lg py-3 text-center">
-                    <div className="flex justify-center items-start">
-                      <p>86</p>
-                      <ModalCumScore type="Quiz" subject="Olahraga" />
-                    </div>
-                  </TableCell>
-                  <TableCell className="text-lg py-3 text-center">76</TableCell>
-                  <TableCell className="text-lg py-3 text-center">70</TableCell>
-                  <TableCell className="text-lg py-3 text-center">80</TableCell>
+                  <TableCell className="text-lg py-3 text-left">{_.name}</TableCell>
+                  {_.scoreCourseStudentDetail?.map((scoreType: ScoreCourseStudentDetailAllScore) => {
+                    return (
+                      <TableCell className="text-lg py-3 text-center">
+                        <div className="flex justify-center items-start">
+                          <p>{scoreType.scoreMean}</p>
+                          <ModalCumScore type="Assignment" subject="Fisika" scoreList={scoreType.scoreCourseDetail} />
+                        </div>
+                      </TableCell>
+                    )
+                  })}
                 </TableRow>
               );
             })}

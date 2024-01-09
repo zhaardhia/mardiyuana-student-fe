@@ -9,16 +9,16 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-
+import { ScoreCourseDetailAllScore } from "@/types"
 import { Icon } from "@iconify/react";
 
 type ModalCumPropsType = {
   type: string;
   subject: string;
+  scoreList: ScoreCourseDetailAllScore[] | []
 };
 
-const ModalCumScore = (props: ModalCumPropsType) => {
-  const { type, subject } = props;
+const ModalCumScore: React.FC<ModalCumPropsType> = ({ scoreList, subject, type }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -33,18 +33,25 @@ const ModalCumScore = (props: ModalCumPropsType) => {
         <Table className="bg-white rounded-xl">
           <TableHeader>
             <TableRow className="bg-slate-200">
-              <TableHead className="text-xl py-3 text-center">Quiz 1</TableHead>
-              <TableHead className="text-xl py-3 text-center">Quiz 2</TableHead>
-              <TableHead className="text-xl py-3 text-center">Quiz 3</TableHead>
-              <TableHead className="text-xl py-3 text-center">Quiz 4</TableHead>
+              {scoreList.map((score: ScoreCourseDetailAllScore, idx) => {
+                return (
+                  <>
+                    <TableHead className="text-xl py-3 text-center">{score.type} {idx + 1}</TableHead>
+                  </>
+                )
+              })}
+              
             </TableRow>
           </TableHeader>
           <TableBody>
             <TableRow className="group">
-              <TableCell className="text-xl border-b-2 border-slate-400 py-3 text-center">90</TableCell>
-              <TableCell className="text-xl border-b-2 border-slate-400 py-3 text-center">99</TableCell>
-              <TableCell className="text-xl border-b-2 border-slate-400 py-3 text-center">87</TableCell>
-              <TableCell className="text-xl border-b-2 border-slate-400 py-3 text-center">67</TableCell>
+              {scoreList.map((score: ScoreCourseDetailAllScore, idx) => {
+                return (
+                  <>
+                    <TableCell className="text-xl border-b-2 border-slate-400 py-3 text-center">{score.score}</TableCell>
+                  </>
+                )
+              })}
             </TableRow>
           </TableBody>
         </Table>
