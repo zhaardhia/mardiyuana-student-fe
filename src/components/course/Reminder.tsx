@@ -5,6 +5,7 @@ import { Icon } from "@iconify/react";
 import { useRouter } from "next/router";
 import { useSessionUser } from "@/contexts/SessionUserContext"
 import { ReminderCourseList, InitialCourseData } from "@/types"
+import Link from 'next/link';
 
 interface ReminderProps {
   initialCourseData: InitialCourseData | undefined
@@ -57,9 +58,9 @@ const Reminder: React.FC<ReminderProps> = ({ initialCourseData }) => {
           <h2 className="font-semibold text-3xl mb-2">{_.name}</h2>
 
           {reminderCourses?.map((reminder: ReminderCourseList) => (
-            <section className="mt-5">
+            <Link href={`/reminder/${reminder.id}`}>
               <div
-                className="py-4 px-5 lg:px-10 bg-white rounded-[6px] flex items-center gap-5 shadow-lg cursor-pointer"
+                className="hover:bg-slate-50 mt-5 py-4 px-5 lg:px-10 bg-white rounded-[6px] flex items-center gap-5 shadow-lg cursor-pointer"
                 // onClick={() => router.push(`/discussion/${courseId}`)}
               >
                 <img src="/photo_teacher.jpg" alt="" className="w-20 h-20 rounded-full object-cover" />
@@ -74,7 +75,7 @@ const Reminder: React.FC<ReminderProps> = ({ initialCourseData }) => {
                   </div>
                 </div>
               </div>
-            </section>
+            </Link>
           ))}
           {!reminderCourses || reminderCourses.length < 1 && (
             <p>Belum ada data reminder pada bab ini</p>

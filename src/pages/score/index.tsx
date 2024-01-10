@@ -9,19 +9,13 @@ import { ScoreCourseStudentAllScore, ScoreCourseStudentDetailAllScore } from "@/
 import { useSessionUser } from "@/contexts/SessionUserContext"
 type Option = { value: string; label: string };
 
-const options = [
-  { value: "X", label: "X" },
-  { value: "XI", label: "XI" },
-  { value: "XII", label: "XII" },
-];
-
 const ScorePage = () => {
   const router = useRouter();
   const { axiosJWT } = useSessionUser()
   const [academicYearId, setAcademicYearId] = useState<string>()
   const [optionAcademicYear, setOptionAcademicYear] = useState<Option[]>()
   const [scoreCourseData, setScoreCourseData] = useState<ScoreCourseStudentAllScore[]>()
-  const [selectedAcademicYear, setSelectedAcademicYear] = useState<Option>(options[0]);
+  const [selectedAcademicYear, setSelectedAcademicYear] = useState<Option>();
   const handleSelectClass = (option: Option | null, actionMeta: ActionMeta<Option>) => {
     option && setSelectedAcademicYear(option);
   };

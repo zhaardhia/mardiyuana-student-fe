@@ -43,3 +43,22 @@ export type ScoreCourseDetailAllScore = {
   academicYearId: string
   createdDate: Date
 }
+
+export type ScoreCourseById = {
+  id: string
+  title: string
+  body: string
+  type: string
+  scoreDue: Date
+  classId: string
+  courseId: string
+  createdDate: Date
+  course: {
+    id: string
+    name: string
+  }
+  class: {
+    id: string
+    name: string
+  }
+}
