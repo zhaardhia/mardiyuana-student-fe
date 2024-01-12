@@ -35,7 +35,7 @@ const Score = () => {
   }
 
   return (
-    <Tabs defaultValue="bab 1" className="w-full overflow-x-hidden">
+    <Tabs defaultValue="wkwk 0" className="w-full overflow-x-hidden">
       <TabsList className="w-full flex items-center gap-4 justify-start pl-0 min-w-[500px] overflow-y-hidden overflow-x-scroll md:pr-0 sm:pr-10 pr-52">
         {scoreCourseType.map((_, idx) => (
           <TabsTrigger
@@ -64,6 +64,7 @@ const Score = () => {
                     {score.status !== "DONE" && "Not "}Completed 
                     <Icon icon={cn(score.status === "DONE" ? "lets-icons:check-fill" : "gridicons:cross-circle")} />
                   </p>
+                  <p className="">Score: {score.status === "DONE" ? (<strong>90</strong>) : "-"}</p>
                   <p className="text-sm">{score.type ==="ASSIGNMENT" ? "due" : "started at"}, {moment(score.scoreDue).format("LLL")}</p>
                 </div>
               </section>

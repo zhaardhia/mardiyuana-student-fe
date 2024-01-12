@@ -6,7 +6,7 @@ import { jwtDecode } from 'jwt-decode'
 interface ContextValue {
   state: any;
   dispatch: any;
-  refreshToken: any; 
+  refreshStudentToken: any; 
   axiosJWT: any; 
   axiosBasic: any;
 }
@@ -85,7 +85,7 @@ export function SessionUserProvider({ children }: { children: ReactNode }) {
   const axiosBasic = axios.create()
 
 
-  const refreshToken = async () => {
+  const refreshStudentToken = async () => {
     try {
       console.log("wawkaww")
       const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/mardiyuana-student/session/refresh-token`, {
@@ -109,7 +109,7 @@ export function SessionUserProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  const value = {state, dispatch, refreshToken, axiosJWT, axiosBasic}
+  const value = {state, dispatch, refreshStudentToken, axiosJWT, axiosBasic}
   return <SessionUserContext.Provider value={value}>{children}</SessionUserContext.Provider>
 }
 

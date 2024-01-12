@@ -1,12 +1,14 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import axios from "axios";
+import { cn } from "@/lib/utils";
 
 const SignIn = () => {
   const router = useRouter();
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [msgError, setMsgError] = useState<string>();
+  const [typeInputPass, setTypeInputPass] = useState<string>("password")
 
   const submitUser = async () => {
     console.log("tes");
@@ -26,11 +28,6 @@ const SignIn = () => {
         }
       );
       console.log({login})
-      const expires = new Date();
-      expires.setTime(expires.getTime() + 1 + 24 * 60 * 60 * 1000);
-      const cookie = `${"refreshToken"}=${login?.data?.data?.refreshToken};expires=${expires.toUTCString()}`;
-      console.log({cookie})
-      document.cookie = cookie;
       setMsgError('');
       // refreshToken()
       router.push("/");
@@ -55,16 +52,25 @@ const SignIn = () => {
               onChange={(e) => setUsername(e.target.value)}
               value={username}
             />
-            <input
-              className="h-10 w-full rounded-xl p-2 text-slate-800"
-              placeholder="Password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <div className="flex flex-col gap-2">
+              <input
+                className="h-10 w-full rounded-xl p-2 text-slate-800"
+                placeholder="Password"
+                type={typeInputPass}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <div className="flex gap-4">
+                <input type="checkbox" className="rounded-lg" onChange={(e) => {
+                  setTypeInputPass(e.target.checked ? "text" : "password")
+                }}/>
+                <p className="text-sm text-white">Lihat Password</p>
+              </div>
+            </div>
           </div>
+          <p className={cn("text-red-500 text-start text-sm", msgError ? "block" : "hidden")}>{msgError}</p>
           <button
-            className="text-xl bg-login-button rounded-lg px-6 py-2"
+            className="text-xl bg-green-400 hover:bg-green-500 rounded-xl px-6 py-2"
             onClick={submitUser}
           >
             Login

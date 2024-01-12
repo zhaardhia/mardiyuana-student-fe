@@ -34,3 +34,9 @@ export type ReminderCourseDetail = {
     }
   }
 }
+
+export type ReminderCourseDashboard = {
+  id: string
+  title: string
+  body: string
+}

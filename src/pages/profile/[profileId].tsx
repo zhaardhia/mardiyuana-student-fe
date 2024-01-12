@@ -1,21 +1,42 @@
 import Layout from "@/components/Layout";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import moment from "moment";
+import ModalEditPassword from "@/components/profile/ModalEditPassword";
+import { useSessionUser } from "@/contexts/SessionUserContext";
+import { ProfileDataType } from "@/types";
 
 const ProfilePage = () => {
-  const router = useRouter();
-  const { profileId } = router.query;
+  const { axiosJWT, state } = useSessionUser()
+  const userId = state?.userInfo?.userId
+  const [profile, setProfile] = useState<ProfileDataType>()
 
-  const [editPassword, setEditPassword] = useState(false);
+  useEffect(() => {
+    fetchData()
+  }, [userId])
 
+  const fetchData = async () => {
+    const response = await axiosJWT.get(`${process.env.NEXT_PUBLIC_BASE_URL}/mardiyuana-student/session/profile-data`, {
+      withCredentials: true,
+      headers: {
+        'Access-Control-Allow-Origin': '*', 
+        'Content-Type': 'application/json',
+      },
+    })
+    console.log({response})
+    if (response?.status === 200) {
+      setProfile(response?.data?.data)
+    }
+  }
+  console.log({profile})
   return (
     <Layout>
       <div className="flex justify-between items-center mb-8 w-[90%] mx-auto max-w-[1400px]">
         <h1 className="text-2xl font-semibold">Profile</h1>
-        <p>Jumat, 3 Desember 1945</p>
+        <p>{moment().format('llll')}</p>
       </div>
 
-      <hr className="h-[2px] bg-[#AFAFAF]" />
+      <hr className="h-[2px] border-dotted w-[90%] mx-auto border-slate-300" />
 
       <div className="my-5 w-[90%] mx-auto py-3 flex flex-col gap-14 max-w-[1400px]">
         <div className="flex sm:flex-row flex-col items-center sm:justify-center gap-10">
@@ -31,41 +52,57 @@ const ProfilePage = () => {
           <div className="flex flex-col gap-3 w-full sm:w-1/3">
             <div>
               <label htmlFor="" className="font-medium text-lg">
-                Name
+                Nama Lengkap
               </label>
               <input
                 type="text"
-                className="rounded-[8px] border border-gray-400 bg-[#F9FAFB] focus:outline-primaryBtn px-3 w-full py-2"
-                value={"Fadli Rizaldy"}
+                className="rounded-[8px] border  focus:outline-primaryBtn px-3 w-full py-2"
+                value={profile?.fullname}
               />
             </div>
             <div>
               <label htmlFor="" className="font-medium text-lg">
-                Kelas
+                Nama Singkat
               </label>
               <input
                 type="text"
-                className="rounded-[8px] border border-gray-400 bg-[#F9FAFB] focus:outline-primaryBtn px-3 w-full py-2"
-                value={"IX-A"}
+                className="rounded-[8px] border  focus:outline-primaryBtn px-3 w-full py-2"
+                value={profile?.name}
               />
             </div>
             <div>
               <label htmlFor="" className="font-medium text-lg">
-                Wali Kelas
+                Email
               </label>
               <input
                 type="text"
-                className="rounded-[8px] border border-gray-400 bg-[#F9FAFB] focus:outline-primaryBtn px-3 w-full py-2"
-                value={"Novaria"}
+                className="rounded-[8px] border  focus:outline-primaryBtn px-3 w-full py-2"
+                value={profile?.email}
               />
             </div>
-          </div>
-          <div className="flex flex-col gap-1">
-            <label htmlFor="" className="font-medium text-lg">
-              Ubah Password
-            </label>
-
-            <button className="py-1 px-4 text-lg rounded-[6px] text-white bg-green-600 mt-2">Edit</button>
+            <div>
+              <label htmlFor="" className="font-medium text-lg">
+                Username
+              </label>
+              <input
+                type="text"
+                className="rounded-[8px] border  focus:outline-primaryBtn px-3 w-full py-2"
+                value={profile?.username}
+              />
+            </div>
+            <div>
+              <label htmlFor="" className="font-medium text-lg">
+                Nomor Telepon / HP
+              </label>
+              <input
+                type="text"
+                className="rounded-[8px] border  focus:outline-primaryBtn px-3 w-full py-2"
+                value={profile?.phone}
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <ModalEditPassword />
+            </div>
           </div>
         </div>
       </div>

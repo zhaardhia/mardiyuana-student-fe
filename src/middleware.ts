@@ -15,7 +15,7 @@ export const publicRoutes = ["/about", "/"];
 
 export default async function middleware(request: NextRequest) {
   console.log("wkwkwk", {route: request.nextUrl.pathname})
-  const currentUser = request.cookies.get("refreshToken")?.value;
+  const currentUser = request.cookies.get("studentToken")?.value;
   console.log({currentUser})
 
   if (currentUser) {
@@ -25,9 +25,9 @@ export default async function middleware(request: NextRequest) {
       protectedRoutes.includes(request.nextUrl.pathname) &&
       (Date.now() > decoded.exp * 1000)
     ) {
-      request.cookies.delete("refreshToken");
+      request.cookies.delete("studentToken");
       const response = NextResponse.redirect(new URL("/sign-in", request.url));
-      response.cookies.delete("refreshToken");
+      response.cookies.delete("studentToken");
 
       return response;
     }

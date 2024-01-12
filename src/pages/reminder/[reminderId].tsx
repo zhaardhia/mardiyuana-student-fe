@@ -37,7 +37,7 @@ const ReminderDetailPage = () => {
         <h1 className="text-2xl font-semibold">{reminderData?.course_section?.course?.name}</h1>
       </div>
 
-      <hr className="h-[2px] bg-[#AFAFAF]" />
+      <hr className="h-[2px] border-dotted w-[90%] mx-auto border-slate-300" />
 
       <div className="my-4 w-[90%] mx-auto flex flex-col max-w-[1400px]">
         <h2 className="mb-7 font-semibold text-2xl">Chapter {(reminderData?.course_section?.numberSection || 0) + 1}: {reminderData?.course_section?.name}</h2>

@@ -122,13 +122,13 @@ const ClassPage = () => {
         <h1 className="text-2xl font-semibold">VII-A</h1>
       </div>
 
-      <hr className="h-[2px] bg-[#AFAFAF]" />
+      <hr className="h-[2px] border-dotted w-[90%] mx-auto border-slate-300" />
 
       <div className="my-2 w-[90%] mx-auto py-3 flex gap-14 items-center max-w-[1400px]">
         <h1 className="text-xl">View Classmate</h1>
       </div>
 
-      <hr className="h-[2px] bg-[#AFAFAF]" />
+      <hr className="h-[2px] border-dotted w-[90%] mx-auto border-slate-300" />
 
       <div className="my-5 w-[90%] mx-auto rounded-xl shadow-xl flex gap-14 items-center max-w-[1400px]">
         <Table className="bg-white rounded-xl min-w-[350px]">

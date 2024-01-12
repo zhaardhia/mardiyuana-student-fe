@@ -37,7 +37,7 @@ const ScoreCourseDetailPage = () => {
         <h1 className="text-2xl font-semibold">{scoreCourseDetail?.course?.name}</h1>
       </div>
 
-      <hr className="h-[2px] bg-[#AFAFAF]" />
+      <hr className="h-[2px] border-dotted w-[90%] mx-auto border-slate-300" />
 
       <div className="my-4 w-[90%] mx-auto flex flex-col max-w-[1400px]">
         <h2 className="mb-7 font-semibold text-2xl">{scoreCourseDetail?.type}: {scoreCourseDetail?.title}</h2>

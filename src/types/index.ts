@@ -6,3 +6,7 @@ export * from './class';
 export * from './teacher';
 export * from './reminderCourse';
 export * from './scoreCourse';
+export * from './event';
+export * from './announcement';
+export * from './dashboard';
+export * from './profile';

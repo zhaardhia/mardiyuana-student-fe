@@ -5,7 +5,7 @@ import Link from "next/link";
 // import { useSessionUser } from '../contexts/SessionUserContext'
 import { useRouter } from "next/router";
 import Navbar from "./Navbar";
-// import { Toaster } from "@/components/ui/toaster"
+import { Toaster } from "@/components/ui/toaster"
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -18,8 +18,8 @@ const Layout = ({ children }: LayoutProps) => {
       <Navbar />
       <Sidebar />
 
-      <div className="pt-[9rem] sm:pt-[7rem] pb-[3rem] sm:pl-[10rem] bg-[#E4EBF7] min-h-screen">{children}</div>
-      {/* <Toaster /> */}
+      <div className="pt-[9rem] sm:pt-[7rem] pb-[3rem] sm:pl-[10rem] bg-white min-h-screen">{children}</div>
+      <Toaster />
     </>
   );
 };

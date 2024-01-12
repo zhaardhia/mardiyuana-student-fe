@@ -48,7 +48,7 @@ const CourseDetail = () => {
         <h1 className="text-2xl font-semibold">{courseInitial?.course.name}</h1>
       </div>
 
-      <hr className="h-[2px] bg-[#AFAFAF]" />
+      <hr className="h-[2px] border-dotted w-[90%] mx-auto border-slate-300" />
 
       <div className="my-4 w-[90%] mx-auto flex gap-14 items-center max-w-[1400px]">
         <div className="flex items-center gap-4">
@@ -60,7 +60,7 @@ const CourseDetail = () => {
         </div>
       </div>
 
-      <hr className="h-[2px] bg-[#AFAFAF]" />
+      <hr className="h-[2px] border-dotted w-[90%] mx-auto border-slate-300" />
 
       <div className="my-4 w-[90%] mx-auto flex gap-14 items-center max-w-[1400px]">
         <Tabs defaultValue="session" className="w-full overflow-x-hidden">

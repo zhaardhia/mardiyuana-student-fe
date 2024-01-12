@@ -28,7 +28,7 @@ const ModalCumScore: React.FC<ModalCumPropsType> = ({ scoreList, subject, type }
         <DialogHeader className="flex flex-col items-center">
           <DialogTitle className="text-2xl capitalize">Cummulative {type}</DialogTitle>
           <DialogDescription className="text-xl font-normal capitalize">{subject}</DialogDescription>
-          <hr className="h-[2px] bg-[#AFAFAF]" />
+          <hr className="h-[2px] border-dotted w-[90%] mx-auto border-slate-300" />
         </DialogHeader>
         <Table className="bg-white rounded-xl">
           <TableHeader>
