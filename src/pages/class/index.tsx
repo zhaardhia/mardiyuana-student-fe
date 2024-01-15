@@ -18,11 +18,16 @@ const gparam = {
   pageSize: 10,
 }
 
+type ClassDataType = {
+  name: string
+}
+
 const ClassPage = () => {
   const { state, axiosJWT } = useSessionUser()
   const [currentPage, setCurrentPage] = useState(1);
 
   const [studentData, setStudentData] = useState<ClassStudentList[]>();
+  const [classData, setClassData] = useState<ClassDataType>()
   const [totalData, setTotalData] = useState<number | null>();
   const [totalPages, setTotalPages] = useState<number>(10);
   const [nextPage, setNextPage] = useState<number | null>();
@@ -42,6 +47,7 @@ const ClassPage = () => {
 
       if (response?.data?.statusCode === "000") {
         setStudentData(response?.data?.data?.listStudents);
+        setClassData(response?.data?.data?.classData)
         setTotalData(response?.data?.data?.totalData);
         setTotalPages(response?.data?.data?.totalPages);
         setNextPage(response?.data?.data?.nextPage);
@@ -119,7 +125,7 @@ const ClassPage = () => {
     <Layout>
       <div className="flex justify-between items-center mb-8 w-[90%] mx-auto max-w-[1400px]">
         <h1 className="text-2xl font-semibold">Your Class</h1>
-        <h1 className="text-2xl font-semibold">VII-A</h1>
+        <h1 className="text-2xl font-semibold">{classData?.name}</h1>
       </div>
 
       <hr className="h-[2px] border-dotted w-[90%] mx-auto border-slate-300" />
