@@ -8,6 +8,7 @@ import ModalCumScore from "@/components/score/ModalCumScore";
 import { ScoreCourseStudentAllScore, ScoreCourseStudentDetailAllScore } from "@/types"
 import { useSessionUser } from "@/contexts/SessionUserContext"
 type Option = { value: string; label: string };
+import moment from "moment";
 
 const ScorePage = () => {
   const router = useRouter();
@@ -46,7 +47,7 @@ const ScorePage = () => {
     <Layout>
       <div className="flex justify-between items-center mb-8 w-[90%] mx-auto max-w-[1400px]">
         <h1 className="text-2xl font-semibold">Score</h1>
-        <p>Jumat, 3 Desember 1945</p>
+        <p>{moment().format("LLL")}</p>
       </div>
 
       <hr className="h-[2px] border-dotted w-[90%] mx-auto border-slate-300" />
@@ -54,7 +55,7 @@ const ScorePage = () => {
       <div className="my-5 w-[90%] mx-auto py-3 flex gap-14 items-center max-w-[1400px]">
         <Select
           name="class"
-          className="basic-single w-[18%] min-w-28 rounded-xl"
+          className="basic-single sm:w-[50%] w-full min-w-28 rounded-xl"
           value={selectedAcademicYear}
           classNamePrefix="select"
           isClearable={false}
@@ -71,8 +72,8 @@ const ScorePage = () => {
           <TableHeader>
             <TableRow>
               <TableHead className="text-xl py-3 text-left">Mata Pelajaran</TableHead>
-              <TableHead className="text-xl py-3 text-center">Cum. Assignment</TableHead>
-              <TableHead className="text-xl py-3 text-center">Cum. Quiz</TableHead>
+              <TableHead className="text-xl py-3 text-center">Assignment</TableHead>
+              <TableHead className="text-xl py-3 text-center">Daily Exam</TableHead>
               <TableHead className="text-xl py-3 text-center">Mid Exam</TableHead>
               <TableHead className="text-xl py-3 text-center">Final Exam</TableHead>
             </TableRow>
@@ -87,7 +88,7 @@ const ScorePage = () => {
                       <TableCell className="text-lg py-3 text-center">
                         <div className="flex justify-center items-start">
                           <p>{scoreType.scoreMean}</p>
-                          <ModalCumScore type="Assignment" subject="Fisika" scoreList={scoreType.scoreCourseDetail} />
+                          <ModalCumScore type={scoreType.scoreCourseType} subject="Fisika" scoreList={scoreType.scoreCourseDetail} />
                         </div>
                       </TableCell>
                     )

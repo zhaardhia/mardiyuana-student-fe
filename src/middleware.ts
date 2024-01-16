@@ -22,7 +22,7 @@ export default async function middleware(request: NextRequest) {
     const decoded: JwtPayload = jwtDecode(currentUser)
     console.log({decoded, exp: Date.now() > decoded.exp, date: Date.now()})
     if (
-      protectedRoutes.includes(request.nextUrl.pathname) &&
+      // protectedRoutes.includes(request.nextUrl.pathname) &&
       (Date.now() > decoded.exp * 1000)
     ) {
       request.cookies.delete("studentToken");
@@ -44,6 +44,17 @@ export default async function middleware(request: NextRequest) {
 // See "Matching Paths" below to learn more
 export const config = {
   // matcher: '/((?!api|_next/static|_next/image|favicon.ico).*)',
-  matcher: ['/', '/course', '/reminder', '/score'],
-
+  // matcher: ['/', '/course', '/reminder', '/score'],
+  matcher: [
+    '/',
+    '/class',
+    '/class/note/:classId*',
+    '/course',
+    '/course/detail/:enrollmentId*',
+    '/profile',
+    '/profile/:profileId',
+    '/reminder/:reminderId',
+    '/score',
+    '/scoring/:scoreCourseId'
+  ],
 }
