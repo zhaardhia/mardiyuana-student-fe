@@ -45,31 +45,35 @@ const ModalCumScore: React.FC<ModalCumPropsType> = ({ scoreList, subject, type }
           <DialogDescription className="text-xl font-normal capitalize">{subject}</DialogDescription>
           <hr className="h-[2px] border-dotted w-[90%] mx-auto border-slate-300" />
         </DialogHeader>
-        <Table className="bg-white rounded-xl">
-          <TableHeader>
-            <TableRow className="bg-slate-200">
-              {scoreList.sort((a: any, b: any) => a.createdDate - b.createdDate).map((score: ScoreCourseDetailAllScore, idx) => {
-                return (
-                  <>
-                    <TableHead className="text-xl py-3 text-center">{score.type} {idx + 1}</TableHead>
-                  </>
-                )
-              })}
-              
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            <TableRow className="group">
-              {scoreList.map((score: ScoreCourseDetailAllScore, idx) => {
-                return (
-                  <>
-                    <TableCell className="text-xl border-b-2 border-slate-400 py-3 text-center">{score.score}</TableCell>
-                  </>
-                )
-              })}
-            </TableRow>
-          </TableBody>
-        </Table>
+        {scoreList.length > 0 ? (
+          <Table className="bg-white rounded-xl">
+            <TableHeader>
+              <TableRow className="bg-slate-200">
+                {scoreList.sort((a: any, b: any) => a.createdDate - b.createdDate).map((score: ScoreCourseDetailAllScore, idx) => {
+                  return (
+                    <>
+                      <TableHead className="text-xl py-3 text-center">{score.type} {idx + 1}</TableHead>
+                    </>
+                  )
+                })}
+                
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <TableRow className="group">
+                {scoreList.map((score: ScoreCourseDetailAllScore, idx) => {
+                  return (
+                    <>
+                      <TableCell className="text-xl border-b-2 border-slate-400 py-3 text-center">{score.score}</TableCell>
+                    </>
+                  )
+                })}
+              </TableRow>
+            </TableBody>
+          </Table>
+        ) : (
+          <p className="text-center text-lg">Belum ada data nilai.</p>
+        )}
       </DialogContent>
     </Dialog>
   );

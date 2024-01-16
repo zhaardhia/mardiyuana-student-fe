@@ -6,10 +6,23 @@ import { useRouter } from "next/router";
 import { useSessionUser } from "@/contexts/SessionUserContext";
 
 const Navbar = () => {
-  const { state } = useSessionUser()
+  const { state, axiosJWT } = useSessionUser()
   const router = useRouter();
   const [showDropdown, setShowDropdown] = useState(false);
   console.log({state})
+
+  const logout = async () => {
+    try {
+      await axiosJWT.delete(`${process.env.NEXT_PUBLIC_BASE_URL}/mardiyuana-student/session/logout-user`, {
+        withCredentials: true,
+        headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'}
+      })
+      router.push("/sign-in")
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <nav className="fixed z-50 backdrop-blur-lg w-full bg-white">
       <div className="flex justify-between py-3 px-5 text-xl w-full mx-auto items-center">
@@ -41,9 +54,7 @@ const Navbar = () => {
               <button
                 className="py-2 px-2 hover:bg-gray-100"
                 disabled={!showDropdown}
-                onClick={() => {
-                  router.reload();
-                }}
+                onClick={logout}
               >
                 Logout
               </button>
